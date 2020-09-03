@@ -10,8 +10,6 @@ chain_stub: polkadot
 project: default
 chain: polkadot
 loggingFilter: "sync=trace,afg=trace,babe=debug"
-# relay_ip_address:
-# relay_p2p_address:
 # telemetryUrl:
 
 ## Enable flags
