@@ -7,6 +7,7 @@ Group=polkadot
 ExecStart=/usr/local/bin/polkadot \
          --name {{ project|default('project') }}-sv-public \
          --chain={{ chain }} \
+         --database paritydb \
          --rpc-external \
          --rpc-cors=all \
          --ws-external \
