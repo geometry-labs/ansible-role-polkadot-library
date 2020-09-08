@@ -8,6 +8,7 @@ ExecStart=/usr/local/bin/polkadot \
          --name {{ project|default('project') }}-{{ instance_count }} \
          --chain={{ chain }} \
          --database paritydb \
+         --pruning archive \
          --rpc-external \
          --rpc-cors=all \
          --ws-external \
