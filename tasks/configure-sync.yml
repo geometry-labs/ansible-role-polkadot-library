@@ -37,7 +37,7 @@
 - name: copy sync script
   template:
     src: blockchain_sync.sh.j2
-    dest: /usr/local/bin/blockchain_sync.sh
+    dest: /usr/local/bin/{{ chain }}_blockchain_sync.sh
     owner: root
     group: root
     mode: '0700'
@@ -45,14 +45,14 @@
 - name: create polkaprep service file
   template:
     src: polkaprep.service.j2
-    dest: /etc/systemd/system/polkaprep.service
+    dest: /etc/systemd/system/{{ chain }}_polkaprep.service
     owner: root
     group: root
     mode: 0600
 
 - name: enable polkaprep service
   systemd:
-    name: polkaprep.service
+    name: "{{ chain }}_polkaprep.service"
     state: stopped
     enabled: yes
   changed_when: false

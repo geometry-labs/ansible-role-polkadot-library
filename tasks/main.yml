@@ -2,7 +2,7 @@
 - name: create polkadot service file
   template:
     src: polkadot.service.j2
-    dest: /etc/systemd/system/polkadot.service
+    dest: /etc/systemd/system/{{ chain }}.service
     owner: root
     group: root
     mode: 0600
@@ -14,15 +14,9 @@
 - name: restart polkadot service
   shell: |
     set -o pipefail
-    systemctl stop polkadot.service || true
-
-    if [ -f /usr/local/bin/polkadot-new ]; then
-      cp /usr/local/bin/polkadot-new /usr/local/bin/polkadot
-      chown polkadot:polkadot /usr/local/bin/polkadot
-      chmod a+x /usr/local/bin/polkadot
-    fi
+    systemctl stop {{ chain }}.service || true
     systemctl daemon-reload
-    systemctl enable --now polkadot.service
+    systemctl enable --now {{ chain }}.service
   args:
     executable: /bin/bash
   changed_when: False

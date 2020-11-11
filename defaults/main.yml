@@ -4,13 +4,18 @@ aws_access_key_id: none
 aws_secret_access_key: none
 region: us-east-1
 sync_bucket_uri: none
-chain_stub: polkadot
+chain_stub: ksmcc3
 
 ## Client
 project: default
-chain: polkadot
+chain: kusama
 loggingFilter: "sync=trace,afg=trace,babe=debug"
 # telemetryUrl:
+prometheus_port: 9610
+api_rpc_port: 9933
+api_wss_port: 9944
+instance_count: 0
+default_telemetry_enabled: true
 
 ## Enable flags
 use_source_of_truth: true

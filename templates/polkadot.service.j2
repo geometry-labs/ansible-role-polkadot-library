@@ -11,12 +11,12 @@ ExecStart=/usr/local/bin/polkadot \
          --pruning archive \
          --rpc-external \
          --rpc-cors=all \
+         --rpc-port {{ api_rpc_port }} \
          --ws-external \
+         --ws-port {{ api_wss_port }} \
+         --prometheus-port {{ prometheus_port }} \
          {% if loggingFilter is defined and loggingFilter|length %}
          -l{{ loggingFilter }} \
-         {% endif %}
-         {% if relay_ip_address is defined and relay_ip_address|length %}
-         --reserved-nodes /ip4/{{ relay_ip_address }}/tcp/30333/p2p/{{ relay_p2p_address }} \
          {% endif %}
          {% if default_telemetry_enabled %}
          --telemetry-url 'wss://telemetry.polkadot.io/submit/ 0' \
@@ -24,7 +24,7 @@ ExecStart=/usr/local/bin/polkadot \
          {% if telemetryUrl is defined and telemetryUrl|length %}
          --telemetry-url '{{ telemetryUrl }} 1'
          {% endif %}
-         {% if not telemetryUrl|length and not default_telemetry_enabled %}
+         {% if not telemetryUrl is defined and not default_telemetry_enabled %}
          --no-telemetry
          {% endif %}
 

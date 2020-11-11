@@ -4,7 +4,7 @@ After=network-online.target
 
 [Service]
 Type=oneshot
-ExecStart=/usr/local/bin/blockchain_sync.sh
+ExecStart=/usr/local/bin/{{ chain }}_blockchain_sync.sh
 RemainAfterExit=true
 StandardOutput=journal
 
