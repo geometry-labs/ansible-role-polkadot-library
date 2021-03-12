@@ -7,7 +7,7 @@ Group=polkadot
 ExecStart=/usr/local/bin/polkadot \
          --name {{ project|default('project') }}-{{ instance_count }} \
          --chain={{ chain }} \
-         --database paritydb \
+         --database paritydb-experimental \
          --pruning archive \
          --rpc-external \
          --rpc-cors=all \
