@@ -14,7 +14,7 @@ do
 done
 
 echo "Ensuring client is stopped..."
-systemctl stop {{ chain }}.service
+systemctl stop {{ chain_stub }}.service
 
 echo "Removing existing data..."
 rm -rf /data/polkadot/chains/{{ chain_stub }}/paritydb
@@ -24,6 +24,6 @@ echo "Syncing blockchain from S3..."
 chown -R polkadot:polkadot /data/polkadot
 
 echo "Starting client..."
-systemctl start {{ chain }}.service
+systemctl start {{ chain_stub }}.service
 
 echo "Sync complete!"
