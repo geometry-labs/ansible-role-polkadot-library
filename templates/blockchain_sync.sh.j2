@@ -8,7 +8,7 @@ export AWS_SECRET_ACCESS_KEY={{ aws_secret_access_key }}
 export AWS_REGION={{ region }}
 
 echo "Checking bucket for ready file..."
-until [[ $(/usr/local/bin/aws s3 cp s3://{{ sync_bucket_uri }}/{{ chain }}_sync_ready /dev/null) ]]
+until [[ $(/usr/local/bin/aws s3 cp s3://{{ sync_bucket_name }}/{{ chain }}_sync_ready /dev/null) ]]
 do
   sleep 30
 done
@@ -20,7 +20,7 @@ echo "Removing existing data..."
 rm -rf /data/polkadot/chains/{{ chain_stub }}/paritydb
 
 echo "Syncing blockchain from S3..."
-/usr/local/bin/aws s3 cp s3://{{ sync_bucket_uri }}/{{ chain }} /data/polkadot/chains/{{ chain_stub }}/paritydb --recursive
+/usr/local/bin/aws s3 cp s3://{{ sync_bucket_name }}/{{ chain }} /data/polkadot/chains/{{ chain_stub }}/paritydb --recursive
 chown -R polkadot:polkadot /data/polkadot
 
 echo "Starting client..."
