@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -eo pipefail
 
-{% if aws_access_key_id is not none %}
+{% if aws_access_key_id != "none" %}
 export AWS_ACCESS_KEY_ID={{ aws_access_key_id }}
 export AWS_SECRET_ACCESS_KEY={{ aws_secret_access_key }}
 {% endif %}
