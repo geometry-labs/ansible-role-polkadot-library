@@ -7,14 +7,20 @@ export AWS_SECRET_ACCESS_KEY={{ aws_secret_access_key }}
 {% endif %}
 export AWS_REGION={{ region }}
 
+echo "Ensuring client is stopped..."
+systemctl stop {{ chain_stub }}.service
+
+echo "Waiting for cloud-init to finish..."
+until [[ -f /home/ubuntu/user-data-complete ]]
+do
+  sleep 30
+done
+
 echo "Checking bucket for ready file..."
 until [[ $(/usr/local/bin/aws s3 cp s3://{{ sync_bucket_name }}/{{ chain }}_sync_ready /dev/null) ]]
 do
   sleep 30
 done
-
-echo "Ensuring client is stopped..."
-systemctl stop {{ chain_stub }}.service
 
 echo "Removing existing data..."
 rm -rf /data/polkadot/chains/{{ chain_stub }}/paritydb
