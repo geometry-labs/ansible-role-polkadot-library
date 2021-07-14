@@ -13,7 +13,7 @@
 
 - name: prepare envoy personalization
   include_tasks: envoy-personalization.yml
-  when: envoy_enabled
+  when: enable_envoy_personalization
 
 - name: restart polkadot service
   shell: |
