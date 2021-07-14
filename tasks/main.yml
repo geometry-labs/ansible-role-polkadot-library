@@ -11,6 +11,10 @@
   include_tasks: configure-sync.yml
   when: use_source_of_truth
 
+- name: prepare envoy personalization
+  include_tasks: envoy-personalization.yml
+  when: envoy_enabled
+
 - name: restart polkadot service
   shell: |
     set -o pipefail

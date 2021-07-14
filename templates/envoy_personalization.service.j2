@@ -1,0 +1,12 @@
+[Unit]
+Description=Envoy Personalization
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/{{ chain }}_envoy_personalization.sh
+RemainAfterExit=true
+StandardOutput=journal
+
+[Install]
+WantedBy=multi-user.target

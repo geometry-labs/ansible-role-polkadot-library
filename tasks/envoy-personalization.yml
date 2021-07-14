@@ -1,0 +1,22 @@
+- name: copy personalization script
+  template:
+    src: envoy_personalization.sh.j2
+    dest: /usr/local/bin/{{ chain }}_envoy_personalization.sh
+    owner: root
+    group: root
+    mode: '0700'
+
+- name: create personalization service file
+  template:
+    src: envoy_personalization.service.j2
+    dest: /etc/systemd/system/{{ chain }}_envoy_personalization.service
+    owner: root
+    group: root
+    mode: 0600
+
+- name: enable personalization service
+  systemd:
+    name: "{{ chain }}_envoy_personalization.service"
+    state: stopped
+    enabled: yes
+  changed_when: false
