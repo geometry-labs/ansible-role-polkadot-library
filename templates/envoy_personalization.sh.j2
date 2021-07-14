@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 set -eo pipefail
 
+echo "Waiting for cloud-init to finish..."
+until [[ -f /home/ubuntu/user-data-complete ]]
+do
+  sleep 5
+done
+
 INSTANCE_ID=$(curl -s http://169.254.169.254/latest/meta-data/instance-id)
 
 echo "Templating Consul service files..."
