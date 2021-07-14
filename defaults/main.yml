@@ -19,4 +19,4 @@ default_telemetry_enabled: true
 
 ## Enable flags
 use_source_of_truth: true
-envoy_enabled: false
+enable_envoy_personalization: false
