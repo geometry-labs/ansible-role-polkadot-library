@@ -7,6 +7,9 @@
     group: root
     mode: 0600
 
+- name: enable nginx proxy
+  include_tasks: nginx-proxy.yml
+
 - name: enable source of truth sync
   include_tasks: configure-sync.yml
   when: use_source_of_truth

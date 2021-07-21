@@ -1,0 +1,23 @@
+- name: create nginx config
+  template:
+    src: nginx.conf.j2
+    dest: /etc/nginx/sites-available/{{ chain }}_websocket_proxy
+    owner: root
+    group: root
+    mode: 0600
+
+- name: symlink config
+  file:
+    src: /etc/nginx/sites-available/{{ chain }}_websocket_proxy
+    dest: /etc/nginx/sites-enabled/{{ chain }}_websocket_proxy
+    owner: root
+    group: root
+    state: link
+
+- name: reload nginx service
+  systemd:
+    name: nginx
+    state: reloaded
+    daemon_reload: yes
+    enabled: yes
+  changed_when: false
