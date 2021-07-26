@@ -5,7 +5,7 @@ Description=Polkadot Node
 User=polkadot
 Group=polkadot
 ExecStart=/usr/local/bin/polkadot \
-         --name {{ project|default('project') }}-{{ instance_count | default "library" }} \
+         --name {{ project|default('project') }}-{{ instance_count | default('library') }} \
          --chain={{ chain }} \
          --database paritydb-experimental \
          --pruning archive \
