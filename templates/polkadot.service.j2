@@ -6,6 +6,7 @@ User=polkadot
 Group=polkadot
 ExecStart=/usr/local/bin/polkadot \
          --name {{ project|default('project') }}-{{ instance_count | default('library') }} \
+         --base-path=/data \
          --chain={{ chain }} \
          --database rocksdb \
          --wasm-execution=Compiled \

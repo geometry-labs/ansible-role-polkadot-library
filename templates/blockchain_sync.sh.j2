@@ -23,11 +23,11 @@ do
 done
 
 echo "Removing existing data..."
-rm -rf /data/polkadot/chains/{{ chain_stub }}/paritydb
+rm -rf /data/chains/{{ chain_stub }}/db
 
 echo "Syncing blockchain from S3..."
-/usr/local/bin/aws s3 cp s3://{{ sync_bucket_name }}/{{ chain }} /data/polkadot/chains/{{ chain_stub }}/paritydb --recursive
-chown -R polkadot:polkadot /data/polkadot
+/usr/local/bin/aws s3 cp s3://{{ sync_bucket_name }}/{{ chain }}/db /data/chains/{{ chain_stub }}/db --recursive
+chown -R polkadot:polkadot /data/chains/{{ chain_stub }}
 
 echo "Starting client..."
 systemctl start {{ chain_stub }}.service
