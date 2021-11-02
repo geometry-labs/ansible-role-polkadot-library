@@ -3,6 +3,8 @@ Description=Polkadot Blockchain Prep
 After=network-online.target
 
 [Service]
+User=root
+Group=root
 Type=oneshot
 ExecStart=/usr/local/bin/{{ chain }}_blockchain_sync.sh
 RemainAfterExit=true
