@@ -17,6 +17,7 @@ ExecStart=/usr/local/bin/polkadot \
          --ws-external \
          --ws-port {{ api_wss_port }} \
          --prometheus-port {{ prometheus_port }} \
+         --prometheus-external \
          {% if loggingFilter is defined and loggingFilter|length %}
          -l{{ loggingFilter }} \
          {% endif %}
