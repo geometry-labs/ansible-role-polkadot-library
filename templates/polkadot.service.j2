@@ -30,7 +30,8 @@ ExecStart=/usr/local/bin/polkadot \
          {%- if not telemetryUrl is defined and not default_telemetry_enabled | bool %}
          --no-telemetry
          {% endif %}
-
+LimitNOFILE=65535
+LimitNPROC=65535
 Restart=always
 
 [Install]
