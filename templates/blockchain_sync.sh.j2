@@ -28,6 +28,9 @@ rm -rf /data/chains/{{ chain_stub }}/db
 echo "Syncing blockchain from S3..."
 /usr/local/bin/aws s3 sync s3://{{ sync_bucket_name }}/{{ chain }} /data/chains/{{ chain_stub }}/db --delete
 /usr/local/bin/aws s3 sync s3://{{ sync_bucket_name }}/{{ chain }} /data/chains/{{ chain_stub }}/db --delete
+ls /data/chains/{{ chain_stub }}/db/full/MANIFEST* | xargs -n 1 basename > /data/chains/{{ chain_stub }}/db/full/CURRENT
+ls /data/chains/{{ chain_stub }}/db/full/parachains/db/MANIFEST* | xargs -n 1 basename > /data/chains/{{ chain_stub }}/db/full/parachains/db/CURRENT
+
 chown -R polkadot:polkadot /data/chains/{{ chain_stub }}
 
 echo "Starting client..."
