@@ -26,7 +26,8 @@ echo "Removing existing data..."
 rm -rf /data/chains/{{ chain_stub }}/db
 
 echo "Syncing blockchain from S3..."
-/usr/local/bin/aws s3 cp s3://{{ sync_bucket_name }}/{{ chain }} /data/chains/{{ chain_stub }}/db --recursive
+/usr/local/bin/aws s3 sync s3://{{ sync_bucket_name }}/{{ chain }} /data/chains/{{ chain_stub }}/db --delete
+/usr/local/bin/aws s3 sync s3://{{ sync_bucket_name }}/{{ chain }} /data/chains/{{ chain_stub }}/db --delete
 chown -R polkadot:polkadot /data/chains/{{ chain_stub }}
 
 echo "Starting client..."
